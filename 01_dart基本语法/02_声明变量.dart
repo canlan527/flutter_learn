@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 void main(List<String> args) {
   // 1. 明确的声明
   String name = 'coderwhy';
@@ -27,6 +25,7 @@ void main(List<String> args) {
   // const date1 = DateTime.now(); // 报错
   // final date2 = DateTime.now(); // 不报错
 
+  // 为什么写const 不是final吗
   // final p1 = Person('why');
   // final p2 = Person('why');
   // 判断 p1 是否等于 p2
@@ -37,9 +36,14 @@ void main(List<String> args) {
 }
 
 // class Person {
-//   String name;
+//   String name = '老铁修狗';
 
-//   // Person (String name) {
-//   //   this.name = name;
-//   // }
+//   Person(String name) {
+//     this.name = name;
+//   }
+// }
+
+// class Person {
+//   final String name;
+//   Person(this.name);
 // }
