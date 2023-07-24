@@ -51,10 +51,32 @@ void main(List<String> args) {
   // var fruit = 'watermelon';
   // var str = 'I like eat $fruit';
   // print(str); // I eat apple
+  var name = 'why';
+  var age = 20;
+  var height = 1.88;
 
+  var message1 = 'my name is ${name}, my age is ${age}, my height is ${height}';
+  var message2 = 'my name is ${name}, type is ${name.runtimeType}';
+
+  print(message1);
+  print(message2);
+
+  // var message3 = 'my name is $name, type is $name.runtimeType'// 不识别$name.runtimeType
+  // 所以调用表达式的时候还是需要包裹花括号，显示变量可以不需要花括号
 
   // 3. Booleans
   // var isBananaPeeled = false;
+
+  // flutter里，没有非空即真，也没有非零即真
+  // if (true) {
+  //   print('只能判断静态的布尔类型');
+  // }
+
+  // 下面是错误的演示
+  // var flag = '123';
+  // if(flag) { // 不能识别123是true
+  //   print('1231231');
+  // }
 
   // 变量
   // var useNickname = true;
@@ -82,7 +104,7 @@ void main(List<String> args) {
   // int? aNullableInt = null;
   // aNullableInt = 0;
   // aNullableInt = null;
-  
+
   // String? returnNullable() {
   //   return random.nextDouble() < 0.5 ? 'sometimes null' : null;
   // }
@@ -90,6 +112,4 @@ void main(List<String> args) {
   // String returnNonNullable() {
   //   return '永远不返回空类型';
   // }
-
-  
 }
