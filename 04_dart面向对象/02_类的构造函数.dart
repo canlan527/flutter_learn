@@ -8,8 +8,11 @@ void main(List<String> args) {
   // Object调用方法时，编译时会报错
   // dynamic调用方法时，编译时不会报错，但是运行时会存在安全隐患
   // 明确声明
-  dynamic obj = 123;
-  print(obj.substring()); // 编译不报错，运行报错
+  // dynamic obj = 'coder';
+  // print(obj.substring(1)); // 编译不报错，运行报错
+
+  dynamic obj = '123';
+  print(obj.substring(1)); // 编译不报错，运行报错
 
   var p1 = Person.fromMap({'name': 'coder', 'age': 20, 'height': 1.88});
   print(p1);
