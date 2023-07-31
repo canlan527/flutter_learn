@@ -51,15 +51,15 @@ void main(List<String> args) {
   // var fruit = 'watermelon';
   // var str = 'I like eat $fruit';
   // print(str); // I eat apple
-  var name = 'why';
-  var age = 20;
-  var height = 1.88;
+  // var name = 'why';
+  // var age = 20;
+  // var height = 1.88;
 
-  var message1 = 'my name is ${name}, my age is ${age}, my height is ${height}';
-  var message2 = 'my name is ${name}, type is ${name.runtimeType}';
+  // var message1 = 'my name is ${name}, my age is ${age}, my height is ${height}';
+  // var message2 = 'my name is ${name}, type is ${name.runtimeType}';
 
-  print(message1);
-  print(message2);
+  // print(message1);
+  // print(message2);
 
   // var message3 = 'my name is $name, type is $name.runtimeType'// 不识别$name.runtimeType
   // 所以调用表达式的时候还是需要包裹花括号，显示变量可以不需要花括号
@@ -112,4 +112,86 @@ void main(List<String> args) {
   // String returnNonNullable() {
   //   return '永远不返回空类型';
   // }
+
+  // printIntger()
+  // var number = 2023;
+  // printIntger(number); // Hello world,this is 2023
+
+  // 集合类型
+  // var arr1 = <String>['coder1', 'coder2', 'coder3'];
+  // var arr2 = new List.of([1, 2, 3]);
+
+  // arr2.add(1000);
+  // arr2.forEach((v) => print('$v'));
+  // arr1.forEach((e) => print(e));
+  // print(arr2 is List); // true
+
+  // var map1 = <String, String>{'name': 'coderwhy', 'gender': 'male'};
+  // var map2 = new Map <String, String>();
+  // map2['hobby'] = 'study';
+  // map2['play'] = 'basketball';
+  // map2.forEach((key, value) => print(key + ": " + value));
+  // print(map2 is Map<String, String>); // true
+
+  // 函数 Function
+  // eg:判断整数是否为 0
+  // bool isZero(int number) {
+  //   return number == 0;
+  // }
+
+  // void printInfo(int number, Function check) {
+  //   print('$number is Zero: ${check(number)}');
+  // }
+
+  // 函数的缩写：
+  // bool isZero(int number) => number == 0;
+
+  // void printInfo(int number, Function check) => print('$number is Zero: ${check(number)}');
+
+  // Function f = isZero;
+  // int x = 10;
+  // int y = 0;
+
+  // printInfo(x, isZero);
+  // printInfo(y, isZero);
+
+  // 函数参数
+  // 可选参数
+  // 位置可选参数 {}
+  // void demo({bool isbold = false, bool ishidden = false}) => print('$isbold, $ishidden');
+
+  // demo(isbold:true, ishidden: true);
+  // demo(isbold: true);
+  // demo();
+
+  // 命名可选参数
+  // void demo(bool isbold, [bool ishappy = false]) => print('$isbold, $ishappy');
+
+  // demo(true, true);
+  // demo(true);
+
+  // var p = Point(10, 20);
+  // p.printCor();
+  // Point.factory = 1000;
+  // p.printFactory();
 }
+
+// printIntger(int a) {
+//   print('Hello world,this is $a');
+// }
+
+// 类
+// class Point {
+//   // 定义变量
+//   double x = 0.0;
+//   double y = 0.0;
+//   // 定义类静态变量
+//   static int factory = 0;
+
+//   // 构造函数
+//   Point(this.x, this.y);
+
+//   printCor() => print('$x, $y');
+//   printFactory() => print(factory);
+
+// }
