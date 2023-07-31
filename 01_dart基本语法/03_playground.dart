@@ -174,6 +174,22 @@ void main(List<String> args) {
   // p.printCor();
   // Point.factory = 1000;
   // p.printFactory();
+
+  // 复用
+  // var v1 = Vector();
+  // v1
+  //   ..x = 10
+  //   ..y = 20
+  //   ..z = 30; //级联运算符，等同于v1.x=10; xxx.y=20;xxx.z=30;
+  // v1.printInfo(); //输出(10,20,30)
+
+  // var c1 = Coordinate();
+  // c1
+  //   ..x = 1
+  //   ..y = 2; //级联运算符，等同于c1.x=1; c1.y=2;
+  // c1.printInfo(); //输出(1,2)
+  // print(c1 is Point); //true
+  // print(c1 is Coordinate); //true
 }
 
 // printIntger(int a) {
@@ -194,4 +210,23 @@ void main(List<String> args) {
 //   printCor() => print('$x, $y');
 //   printFactory() => print(factory);
 
+// }
+
+// 复用
+// class Point {
+//   num x = 0, y = 0;
+//   void printInfo() => print('($x,$y)');
+// }
+
+// //Vector继承自Point
+// class Vector extends Point {
+//   num z = 0;
+//   @override
+//   void printInfo() => print('($x,$y,$z)'); //覆写了printInfo实现
+// }
+
+// //Coordinate是对Point的接口实现
+// class Coordinate implements Point {
+//   num x = 0, y = 0; //成员变量需要重新声明
+//   void printInfo() => print('($x,$y)'); //成员函数需要重新声明实现
 // }
