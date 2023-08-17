@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
+void main(List<String> args) {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('第一个Flutter程序')),
-        body: Center(
-          child: Text(
-            'Hello world',
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrange,
-            ),
-          ),
+        appBar: AppBar(
+          title: Text('我的第一个flutter应用'),
         ),
-  )));
+        body: MyHomePage(),
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Text(
+      'Hello world',
+      style: TextStyle(color: Colors.amber, fontSize: 50),
+    ));
+  }
 }
