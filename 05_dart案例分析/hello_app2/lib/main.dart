@@ -9,8 +9,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return  MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('加减counter'),
+        ),
+        body:const HomePage(),
+      ),
     );
   }
 }
@@ -20,86 +25,53 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('商品列表'),
-      ),
-      body: const HomeContent(),
-    );
+    return const Count();
   }
 }
-
-class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+// Widget，我们要暴露给别人使用，所以命名不需要加下划线_
+class Count extends StatefulWidget {
+  const Count({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: const <Widget>[
-        HomeProductItem(
-          title: 'Macbook',
-          desc: 'The most affordable Mac laptop to get things done on the go.',
-          imgUrl:
-              'https://www.apple.com/v/macbook-air/q/images/overview/compare/compare_mba_m1__dsgh2hoxlkae_large_2x.png',
-        ),
-        HomeProductItem(
-            title: 'Macbook Air',
-            desc: 'The ultimate iPhone',
-            imgUrl:
-                'https://www.apple.com/v/macbook-pro/ah/images/overview/hero_13__d1tfa5zby7e6_large_2x.jpg'),
-        HomeProductItem(
-          title: 'MacBook Pro',
-          desc:
-              'The ultimate iPad experience with the most advanced technology.',
-          imgUrl:
-              'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spacegray-select-202301?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671304673229',
-        ),
-      ],
-    );
-  }
+  State<Count> createState() => _CountState();
 }
+/// 为什么Flutter在设计的时候 statefulWidget的build方法放在State中？
+/// 1. build出来的Widget是需要依赖State中的变量的
+/// 2. 在Flutter 运行的过程中：
+///    Widget是不断的销毁和创建的
+///    当我们自己的状态发生改变时，并不希望重新创建一个新的State;仅仅改变变动的Widget。
+///    所以单独需要State类，让build的东西依赖类里的变量即可，并不需要重新创建State
 
-class HomeProductItem extends StatelessWidget {
-  const HomeProductItem(
-      {super.key,
-      required this.title,
-      required this.desc,
-      required this.imgUrl});
-  final String title;
-  final String desc;
-  final String imgUrl;
-
-  // HomeProductItem(this.title, this.desc, this.imgUrl);
-
+// 属于上方Widget的state是不希望别人访问到的，命名使用下划线开头即可。
+class _CountState extends State<Count> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    // 抽离样式
-    const titleStyle = TextStyle(fontSize: 25, color: Colors.black87);
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Colors.black26),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('当前计数：$count'),
+          Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ElevatedButton(onPressed: () {
+            setState(() {
+              count--;
+            });
+          }, child: const Text('-')),
+          const SizedBox(width: 8),
+          Text(count.toString()),
+          const SizedBox(width: 8),
+           ElevatedButton(onPressed: () {
+            setState(() {
+              count++;
+            });
+          }, child: const Text('+')),
+        ],
       ),
-        child: Column(
-      children: <Widget>[
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          title,
-          style: titleStyle,
-        ),
-        // 间距
-        const SizedBox(
-          height: 8,
-        ),
-        Image.network(imgUrl),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(desc, textAlign: TextAlign.center,),
-      ],
-    ));
+        ],
+      )
+    );
   }
 }
