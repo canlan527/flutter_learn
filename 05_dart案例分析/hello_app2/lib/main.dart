@@ -9,12 +9,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('加减counter'),
         ),
-        body:const HomePage(),
+        body: const HomePage(),
       ),
     );
   }
@@ -28,6 +28,7 @@ class HomePage extends StatelessWidget {
     return const Count();
   }
 }
+
 // Widget，我们要暴露给别人使用，所以命名不需要加下划线_
 class Count extends StatefulWidget {
   const Count({super.key});
@@ -35,6 +36,7 @@ class Count extends StatefulWidget {
   @override
   State<Count> createState() => _CountState();
 }
+
 /// 为什么Flutter在设计的时候 statefulWidget的build方法放在State中？
 /// 1. build出来的Widget是需要依赖State中的变量的
 /// 2. 在Flutter 运行的过程中：
@@ -48,30 +50,32 @@ class _CountState extends State<Count> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('当前计数：$count'),
-          Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ElevatedButton(onPressed: () {
-            setState(() {
-              count--;
-            });
-          }, child: const Text('-')),
-          const SizedBox(width: 8),
-          Text(count.toString()),
-          const SizedBox(width: 8),
-           ElevatedButton(onPressed: () {
-            setState(() {
-              count++;
-            });
-          }, child: const Text('+')),
-        ],
-      ),
-        ],
-      )
-    );
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('当前计数：$count'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+                onPressed: () {
+                  count--;
+                  setState(() {});
+                },
+                child: const Text('-')),
+            const SizedBox(width: 8),
+            Text(count.toString()),
+            const SizedBox(width: 8),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: const Text('+')),
+          ],
+        ),
+      ],
+    ));
   }
 }
