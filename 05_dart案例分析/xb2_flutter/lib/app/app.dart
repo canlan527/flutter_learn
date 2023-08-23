@@ -1,51 +1,117 @@
 import 'package:flutter/material.dart';
 
-// 自定义基础部件
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  // 底部导航栏Item
+  int currentAppBottomNavigationBarItem = 0;
+  //是否显示app菜单栏
+  bool showAppbar = true; 
+
+  // 点按底部导航栏事件处理
+  onTapAppBottomNavigationBarItem(int index) {
+    setState(() {
+      currentAppBottomNavigationBarItem = index;
+      showAppbar = index == 0;
+    });
+  }
+
+  // 页面主体部件
+  final pageMain = [
+    // 发现
+    const TabBarView(
+      children: [
+        Icon(
+          Icons.explore_outlined,
+          size: 128,
+          color: Colors.black12,
+        ),
+        Icon(
+          Icons.local_fire_department_outlined,
+          size: 128,
+          color: Colors.black12,
+        ),
+      ],
+    ),
+    // 添加
+    const Center(
+      child: Icon(
+        Icons.add_a_photo_outlined,
+        size: 128,
+        color: Colors.black12,
+      ),
+    ),
+    // 我的
+    const Center(
+      child: Icon(
+        Icons.account_circle_outlined,
+        size: 128,
+        color: Colors.black12,
+      ),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        // color: Colors.deepPurpleAccent,
-        padding: const EdgeInsets.all(60),
-        width: 350,
-        height: 350,
-        // transform: Matrix4.rotationZ(0.5),
-        // transformAlignment: Alignment.topRight,
-        decoration: const BoxDecoration(
-          color: Colors.deepPurpleAccent,
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.orange,
-              Colors.cyan,
-              Colors.pink,
-              Colors.brown
-            ]
-          ), 
-          image: DecorationImage(
-            image: NetworkImage(
-              'https://resources.ninghao.net/images/IMG_2626.JPG',
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          backgroundColor: Colors.amber,
+          appBar: showAppbar ? AppBar(
+            title: Image.asset(
+              'assets/images/logo.png',
+              width: 32,
+              color: Colors.white,
             ),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.deepOrange, BlendMode.softLight),
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(25)
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.deepOrangeAccent,
-              offset: Offset(5, 20),
-              blurRadius: 30,
-            )
-          ]
-        ),
-        child: Image.asset(
-          'assets/images/logo.png',
-          width: 96,
-          color: Colors.white,
+            leading: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.menu),
+            ),
+            actions: [
+              IconButton(
+                onPressed: (){}, 
+                icon: const Icon(Icons.more_horiz), 
+              ),
+            ],
+            bottom: const TabBar(tabs: [
+              Tab(text: '最近',),
+              Tab(text: '热门',)
+            ]),
+          ) : null,
+          body: pageMain.elementAt(currentAppBottomNavigationBarItem),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: currentAppBottomNavigationBarItem,
+            onTap: onTapAppBottomNavigationBarItem,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.explore_outlined),
+                label: '发现',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_a_photo_outlined),
+                label: '添加',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_outlined),
+                label: '我的',
+              ),
+            ],
+          ), 
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              print('floating action button');
+            },
+            backgroundColor: Colors.amber.shade900,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.share_outlined),
+          ), 
         ),
       ),
     );
