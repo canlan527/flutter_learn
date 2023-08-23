@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/theme/app_theme.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -61,12 +60,10 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,  
-      darkTheme: AppTheme.dark,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          // backgroundColor: Colors.amber.shade600,
+          backgroundColor: Colors.amber,
           appBar: showAppbar ? AppBar(
             title: Image.asset(
               'assets/images/logo.png',
