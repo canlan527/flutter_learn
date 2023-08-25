@@ -43,7 +43,7 @@ class _AppState extends State<App> {
             index: currentAppBottomNavigationBarItem,
             onTap: onTapAppBottomNavigationBarItem,
           ),
-          floatingActionButton: AppSharedButton(),
+          // floatingActionButton: AppSharedButton(),
           drawer: AppPageAside(),
         ),
       ),
