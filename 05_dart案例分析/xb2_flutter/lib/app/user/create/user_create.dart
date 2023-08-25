@@ -14,6 +14,36 @@ class _UserCreateState extends State<UserCreate> {
   final nameFieldKey = GlobalKey<FormFieldState>();
   final passwordFieldKey = GlobalKey<FormFieldState>();
 
+  // 文本编辑控制器：TextEditingController
+  final nameFieldController = TextEditingController();
+  final passwordFildController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    // 如果在不需要控制器的页面仍然保留控制器，会占用内存，因此需要删除
+    nameFieldController.dispose();
+    passwordFildController.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 通过表单控制器监听表单内容
+    nameFieldController.addListener(() { 
+      print('name: ${nameFieldController.text}');
+    });
+    passwordFildController.addListener(() {
+      print('password: ${passwordFildController.text}');
+    });
+
+    // 通过表单控制器设置初始值
+    nameFieldController.text = 'xiaonan';
+    passwordFildController.text = '123456';
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,6 +60,7 @@ class _UserCreateState extends State<UserCreate> {
         const SizedBox(height: 32,),
         TextFormField(
           key: nameFieldKey,
+          controller: nameFieldController,
           decoration: const InputDecoration(
             labelText: '用户名',
           ),
@@ -45,6 +76,7 @@ class _UserCreateState extends State<UserCreate> {
         const SizedBox(height: 32,),
          TextFormField(
           key: passwordFieldKey,
+          controller: passwordFildController,
           obscureText: true,
           decoration: const InputDecoration(
             labelText: '密码'
