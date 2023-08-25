@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/playground/layout/playground_layout.dart';
-import 'package:xb2_flutter/app/playground/routing/components/about.dart';
+// import 'package:xb2_flutter/app/playground/layout/playground_layout.dart';
+// import 'package:xb2_flutter/app/playground/routing/components/about.dart';
 
 class PlaygroundRouting extends StatelessWidget {
   @override
@@ -16,9 +16,10 @@ class PlaygroundRouting extends StatelessWidget {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return About();
-                  }));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return About();
+                  // }));
+                  Navigator.pushNamed(context, '/about');
                 },
                 child: const Text(
                   '查看柯南介绍',
@@ -26,10 +27,23 @@ class PlaygroundRouting extends StatelessWidget {
                 )),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return PlaygroundLayout();
-                  }));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return About();
+                  // }));
+                  Navigator.pushNamed(context, '/posts/6', arguments: {'user': 'xiaonan'});
                 },
+                child: const Text(
+                  '查看路由参数',
+                  style: TextStyle(fontSize: 20),
+                )),
+            ElevatedButton(
+                onPressed: () {
+                //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //     return PlaygroundLayout();
+                //   }));
+                  Navigator.pushNamed(context, '/p_layout');
+                },
+
                 child: const Text(
                   '查看界面布局',
                   style: TextStyle(fontSize: 20),
