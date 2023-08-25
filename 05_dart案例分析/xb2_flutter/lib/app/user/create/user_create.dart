@@ -34,6 +34,13 @@ class _UserCreateState extends State<UserCreate> {
             labelText: '用户名',
           ),
           onChanged: (value) => name = value,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) {
+            if(value == null || value.isEmpty) {
+              return '请输入用户名';
+            }
+            return null; // 返回null代表验证通过
+          },
         ),
         const SizedBox(height: 32,),
          TextFormField(
@@ -43,6 +50,17 @@ class _UserCreateState extends State<UserCreate> {
             labelText: '密码'
           ),
           onChanged: (value) => password = value,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) {
+            if(value == null || value.isEmpty) {
+              return '请输入密码';
+            }
+            if(value.isNotEmpty && value.length < 6) {
+              return '请设置6位以上的密码';
+            }
+            return null; // 返回null代表验证通过
+
+          },
         ),
         const SizedBox(height: 32,),
         ElevatedButton(
@@ -51,7 +69,13 @@ class _UserCreateState extends State<UserCreate> {
             minimumSize: const Size(double.infinity, 60),
           ),
           // 通过key获取表单内容
-          onPressed: () => print('用户名：${nameFieldKey.currentState!.value}, 密码：${passwordFieldKey.currentState!.value}'),
+          onPressed: () {
+            // 调用表单验证
+            nameFieldKey.currentState!.validate();
+            passwordFieldKey.currentState!.validate();
+
+            print('用户名：${nameFieldKey.currentState!.value}, 密码：${passwordFieldKey.currentState!.value}');
+          },
           // onPressed: () => print('用户名：$name, 密码：$password'),
           child: const Text('注册用户')
         )
