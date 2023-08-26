@@ -5,6 +5,8 @@ import 'package:xb2_flutter/app/components/app_home.dart';
 import 'package:xb2_flutter/app/playground/layout/playground_layout.dart';
 import 'package:xb2_flutter/app/playground/routing/components/about.dart';
 import 'package:xb2_flutter/app/post/show/post_show.dart';
+import 'package:xb2_flutter/app/router/app_route_information_parser.dart';
+import 'package:xb2_flutter/app/router/app_router_delegate.dart';
 import 'package:xb2_flutter/app/theme/app_theme.dart';
 import 'package:xb2_flutter/auth/auth_model.dart';
 
@@ -16,39 +18,22 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
+  final AppModel appModal = AppModel();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthModel()),
-        ChangeNotifierProvider(create: (context) => AppModel()),
+        ChangeNotifierProvider(create: (context) => appModal),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
-        initialRoute: '/', // 初始页面
-        // 使用 Navigator 声明式接口 pages 配置路由
-        home: Consumer<AppModel>(builder: (context, state, child) {
-          return Navigator(
-            pages: [
-              MaterialPage(key: const ValueKey('AppHome'), child: AppHome()),
-              if (state.pageName == 'About') 
-                MaterialPage(
-                  key: const ValueKey('About'),
-                  child: About(),
-                ),
-              
-            ],
-            onPopPage: (route, result) {
-              if(!route.didPop(result)) {
-                return false;
-              }
-              state.setPageName('');
-              return true;
-            },
-          );
-        }),
+        routerDelegate: AppRouterDelegate(appModal),
+        routeInformationParser: AppRouteInformationParser(),
       ),
     );
   }
