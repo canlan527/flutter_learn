@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:xb2_flutter/app/user/user.dart';
 
 class PlaygroundHttp extends StatelessWidget {
 
@@ -12,9 +13,9 @@ class PlaygroundHttp extends StatelessWidget {
     print('响应主体${response.body}');
 
     if(response.statusCode == 200) {
-      final user = jsonDecode(response.body);
-      print('解码之后$user');
-      print(user['name']);
+      final user = User.fromJson(response.body);
+      print(user.id);
+      print(user.name);
     }
 
   }
