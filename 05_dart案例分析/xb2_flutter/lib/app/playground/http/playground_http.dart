@@ -4,8 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:xb2_flutter/app/user/user.dart';
 
-class PlaygroundHttp extends StatelessWidget {
+class PlaygroundHttp extends StatefulWidget {
+  @override
+  State<PlaygroundHttp> createState() => _PlaygroundHttpState();
+}
 
+class _PlaygroundHttpState extends State<PlaygroundHttp> {
+  String? currentUsername; 
+ // 用户名
+  String? currentUserToken; 
+ // 验证用户登录的token
   getUser() async {
     final uri = Uri.parse('https://nid-node.ninghao.co/users/116');
     final response = await http.get(uri);
@@ -20,6 +28,7 @@ class PlaygroundHttp extends StatelessWidget {
 
   }
 
+  // 请求创建用户
   createUser() async {
     final name = '灿烂';
     final password = '123456';
@@ -34,6 +43,29 @@ class PlaygroundHttp extends StatelessWidget {
     print('响应主体 ${response.body}');
   }
 
+  // 发送登录请求
+  login() async {
+    final name = '灿烂';
+    final password = '123456';
+    // 准备要请求的地址
+    final uri = Uri.parse('https://nid-node.ninghao.co/login');
+    final response = await http.post(uri, body: {
+      'name': name,
+      'password': password,
+    });
+
+    print('状态码 ${response.statusCode}');
+    print('响应主体 ${response.body}');
+  
+    if(response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      setState(() {
+        currentUsername = result['name'];
+        currentUserToken = result['token'];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,8 +75,10 @@ class PlaygroundHttp extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-         ElevatedButton(onPressed: getUser, child: const Text('发送请求')),
-         ElevatedButton(onPressed: createUser, child: const Text('创建用户'))
+          Text(currentUsername ?? '未登录', style: Theme.of(context).textTheme.headline6,),
+          ElevatedButton(onPressed: getUser, child: const Text('发送请求')),
+          ElevatedButton(onPressed: createUser, child: const Text('创建用户')),
+          ElevatedButton(onPressed: login, child: const Text('用户登录')),
         ],
       ),
     );
