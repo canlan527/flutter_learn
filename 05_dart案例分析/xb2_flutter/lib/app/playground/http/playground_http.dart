@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:xb2_flutter/app/user/user.dart';
 
+import '../../app_config.dart';
+
 class PlaygroundHttp extends StatefulWidget {
   @override
   State<PlaygroundHttp> createState() => _PlaygroundHttpState();
@@ -35,7 +37,7 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
     final name = '灿烂';
     final password = '123456';
     // 准备要请求的地址
-    final uri = Uri.parse('https://nid-node.ninghao.co/users');
+    final uri = Uri.parse('${AppConfig.apiBaseUrl}/users');
     final response = await http.post(uri, body: {
       'name': name,
       'password': password,
