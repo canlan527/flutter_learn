@@ -25,6 +25,7 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
       final user = User.fromJson(response.body);
       print(user.id);
       print(user.name);
+      // user.avatar
     }
 
   }
@@ -60,6 +61,7 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
   
     if(response.statusCode == 200) {
       final result = jsonDecode(response.body);
+      
       setState(() {
         currentUsername = result['name'];
         currentUserToken = result['token'];
