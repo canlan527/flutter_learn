@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -45,7 +46,7 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
 
   // 发送登录请求
   login() async {
-    final name = '灿烂';
+    final name = '宇宙';
     final password = '123456';
     // 准备要请求的地址
     final uri = Uri.parse('https://nid-node.ninghao.co/login');
@@ -65,6 +66,34 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
       });
     }
   }
+  
+  // 更新用户信息
+  updateUser() async {
+    final name = '宇宙';
+    final password = '123456';
+
+    final uri = Uri.parse('https://nid-node.ninghao.co/users');
+
+    final headers = {
+      'Authorization': 'Bearer $currentUserToken',
+      HttpHeaders.contentTypeHeader: 'application/json',
+    };
+
+    final body = jsonEncode({
+      'validate': {
+        'password': password,
+      },
+      'update': {
+        'name': name,
+      }
+    });
+
+
+    final response = await http.patch(uri, headers: headers, body: body,);
+
+    print('状态码 ${response.statusCode}');
+    print('响应主体 ${response.body}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +108,7 @@ class _PlaygroundHttpState extends State<PlaygroundHttp> {
           ElevatedButton(onPressed: getUser, child: const Text('发送请求')),
           ElevatedButton(onPressed: createUser, child: const Text('创建用户')),
           ElevatedButton(onPressed: login, child: const Text('用户登录')),
+          ElevatedButton(onPressed: updateUser, child: const Text('更新用户')),
         ],
       ),
     );
