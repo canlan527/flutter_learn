@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xb2_flutter/app/app_model.dart';
+import 'package:xb2_flutter/app/post/show/post_show.dart';
+import 'package:xb2_flutter/app/post/show/post_show_model.dart';
 import 'package:xb2_flutter/app/router/app_router_configuration.dart';
 
 import '../components/app_home.dart';
@@ -52,6 +55,7 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
 
   @override
   Widget build(BuildContext context) {
+    final postShowModel = context.read<PostShowModel>();
     return Navigator(
       // key: _navigatorKey,
       pages: [
@@ -61,6 +65,12 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
             key: const ValueKey('About'),
             child: About(),
           ),
+        if(appModal.pageName == 'PostShow' && appModal.resourceId != null)
+            MaterialPage(
+              key: const ValueKey('PostShow'),
+              child: PostShow(appModal.resourceId!, post: postShowModel.post)
+            ),
+        
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {

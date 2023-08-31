@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xb2_flutter/app/post/index/components/post_list_item.dart';
 import 'package:xb2_flutter/app/post/index/post_index_model.dart';
 
 class PostList extends StatefulWidget {
@@ -37,10 +38,7 @@ class _PostListState extends State<PostList> {
     final listContent = ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) {
-        return Text(
-          posts[index].title!,
-          style: Theme.of(context).textTheme.headline6,
-        );
+        return PostListItem(item: posts[index]);
       }
     );
 
