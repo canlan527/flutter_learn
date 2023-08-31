@@ -21,9 +21,29 @@ class _PostListState extends State<PostList> {
   Widget build(BuildContext context) {
     // 获取 PostIndexModel类
     final model = context.watch<PostIndexModel>();
+    // 获取post
+    final posts = model.posts ?? [];
+    // 构建暂无内容
+    final noContent = Center(
+      child: Container(child: Text('暂无内容')),
+    );
     // 发送请求
     // final response = model.getPosts();
-    print(model.posts);
-    return Container();
+    // model.posts!.forEach((item) {
+    //   print(item.toJson());
+    // });
+
+    // 构建列表视图
+    final listContent = ListView.builder(
+      itemCount: posts.length,
+      itemBuilder: (context, index) {
+        return Text(
+          posts[index].title!,
+          style: Theme.of(context).textTheme.headline6,
+        );
+      }
+    );
+
+    return posts.length == 0 ? noContent : listContent;
   }
 }
