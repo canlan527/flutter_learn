@@ -5,10 +5,17 @@ class AppRouteInformationParser extends RouteInformationParser<AppRouterConfigur
   // 解析路由信息
   @override
   Future<AppRouterConfiguration> parseRouteInformation(RouteInformation routeInformation) async {
-    print('解析路由信息：${routeInformation.location}');
+    final uri = Uri.parse(routeInformation.location ?? '');
+
     if(routeInformation.location == '/about') {
       return AppRouterConfiguration.about();
     }
+
+    // posts页面设置id
+    if(uri.pathSegments.length == 2 && uri.pathSegments[0] == 'posts') {
+      return AppRouterConfiguration.postShow(uri.pathSegments[1]);
+    }
+
     return AppRouterConfiguration.home();
   }
 
@@ -21,6 +28,9 @@ class AppRouteInformationParser extends RouteInformationParser<AppRouterConfigur
     }
     if(configuration.isAboutPage) {
       return RouteInformation(location: '/about');
+    }
+    if(configuration.isPostShow) {
+      return RouteInformation(location: '/post/${configuration.resourceId}');
     }
   }
 }

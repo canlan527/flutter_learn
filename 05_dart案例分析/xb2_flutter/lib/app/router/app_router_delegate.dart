@@ -32,12 +32,15 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
   // 设置路由新地址
   @override
   Future<void> setNewRoutePath(configuration) async {
-    print('设置路由新地址：${configuration.pageName}');
     if(configuration.isAboutPage) {
       appModal.setPageName('About');
     }
     if(configuration.isHomePage) {
       appModal.setPageName('');
+    }
+    if(configuration.isPostShow) {
+      appModal.setPageName('PostShow');
+      appModal.setResourceId('${configuration.resourceId}');
     }
   }
 
@@ -50,6 +53,10 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
 
     if(appModal.pageName == 'About') {
       return AppRouterConfiguration.about();
+    }
+
+    if(appModal.pageName == 'PostShow') {
+      return AppRouterConfiguration.postShow(appModal.resourceId);
     }
   }
 
