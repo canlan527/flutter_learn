@@ -28,12 +28,6 @@ class _PostListState extends State<PostList> {
     final noContent = Center(
       child: Container(child: Text('暂无内容')),
     );
-    // 发送请求
-    // final response = model.getPosts();
-    // model.posts!.forEach((item) {
-    //   print(item.toJson());
-    // });
-
     // 构建列表视图
     final listContent = ListView.builder(
       itemCount: posts.length,
@@ -41,7 +35,6 @@ class _PostListState extends State<PostList> {
         return PostListItem(item: posts[index]);
       }
     );
-
     return posts.length == 0 ? noContent : listContent;
   }
 }

@@ -30,7 +30,7 @@ class AppRouteInformationParser extends RouteInformationParser<AppRouterConfigur
       return RouteInformation(location: '/about');
     }
     if(configuration.isPostShow) {
-      return RouteInformation(location: '/post/${configuration.resourceId}');
+      return RouteInformation(location: '/posts/${configuration.resourceId}');
     }
   }
 }
