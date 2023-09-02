@@ -5,7 +5,12 @@ class AuthLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: AuthLoginForm(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('用户登录'),
+        ),
+        body: AuthLoginForm(),
+      ),
     );
   }
 }

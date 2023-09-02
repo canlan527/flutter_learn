@@ -4,6 +4,7 @@ import 'package:xb2_flutter/app/app_model.dart';
 import 'package:xb2_flutter/app/post/show/post_show.dart';
 import 'package:xb2_flutter/app/post/show/post_show_model.dart';
 import 'package:xb2_flutter/app/router/app_router_configuration.dart';
+import 'package:xb2_flutter/auth/login/auth_login.dart';
 
 import '../components/app_home.dart';
 import '../playground/routing/components/about.dart';
@@ -13,7 +14,8 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
   final _navigatorKey;
   final AppModel appModal;
   // 构造函数，使用AppRouterDelegate的时候传递key值。
-  AppRouterDelegate(this.appModal) : _navigatorKey = GlobalKey<NavigatorState>(){
+  AppRouterDelegate(this.appModal)
+      : _navigatorKey = GlobalKey<NavigatorState>() {
     // 监听路由响应
     appModal.addListener(notifyListeners);
   }
@@ -32,13 +34,13 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
   // 设置路由新地址
   @override
   Future<void> setNewRoutePath(configuration) async {
-    if(configuration.isAboutPage) {
+    if (configuration.isAboutPage) {
       appModal.setPageName('About');
     }
-    if(configuration.isHomePage) {
+    if (configuration.isHomePage) {
       appModal.setPageName('');
     }
-    if(configuration.isPostShow) {
+    if (configuration.isPostShow) {
       appModal.setPageName('PostShow');
       appModal.setResourceId('${configuration.resourceId}');
     }
@@ -47,15 +49,15 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
   // 把路由配置转换成路由信息（restoreRouteInformation）
   @override
   get currentConfiguration {
-    if(appModal.pageName == '') {
+    if (appModal.pageName == '') {
       return AppRouterConfiguration.home();
     }
 
-    if(appModal.pageName == 'About') {
+    if (appModal.pageName == 'About') {
       return AppRouterConfiguration.about();
     }
 
-    if(appModal.pageName == 'PostShow') {
+    if (appModal.pageName == 'PostShow') {
       return AppRouterConfiguration.postShow(appModal.resourceId);
     }
   }
@@ -72,12 +74,12 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
             key: const ValueKey('About'),
             child: About(),
           ),
-        if(appModal.pageName == 'PostShow' && appModal.resourceId != null)
-            MaterialPage(
+        if (appModal.pageName == 'PostShow' && appModal.resourceId != null)
+          MaterialPage(
               key: const ValueKey('PostShow'),
-              child: PostShow(appModal.resourceId!, post: postShowModel.post)
-            ),
-        
+              child: PostShow(appModal.resourceId!, post: postShowModel.post)),
+        if (appModal.pageName == 'AuthLogin')
+          MaterialPage(key: ValueKey('AuthLogin'), child: AuthLogin())
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {

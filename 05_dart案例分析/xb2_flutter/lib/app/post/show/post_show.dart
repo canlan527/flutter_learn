@@ -20,10 +20,8 @@ class _PostShowState extends State<PostShow> {
   void initState() {
     super.initState();
     // widget.post 指的是当前Widget内部的post变量 
-    print('postshow init');
     if(widget.post == null) {
       // 从仓库里获取数据
-      print('详情页进来是null 即将设置postId');
       context.read<PostShowModel>().getPostId(widget.postId);
     }  
   }
