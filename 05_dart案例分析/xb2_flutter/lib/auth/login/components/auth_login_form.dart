@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xb2_flutter/auth/auth_model.dart';
 
-class AuthLoginForm extends StatelessWidget {
+class AuthLoginForm extends StatefulWidget {
+  @override
+  State<AuthLoginForm> createState() => _AuthLoginFormState();
+}
+
+class _AuthLoginFormState extends State<AuthLoginForm> {
+  String? name;
+
+  String? password;
+
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     // 使用Provider.of来拿取数据, 指定要访问的模型类型AuthModel
