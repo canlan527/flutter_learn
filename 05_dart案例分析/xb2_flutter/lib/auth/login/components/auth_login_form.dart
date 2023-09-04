@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xb2_flutter/app/components/app_button.dart';
+import 'package:xb2_flutter/app/components/app_header_text.dart';
+import 'package:xb2_flutter/app/components/app_password_field.dart';
+import 'package:xb2_flutter/app/components/app_text_field.dart';
 import 'package:xb2_flutter/auth/auth_model.dart';
 
 class AuthLoginForm extends StatefulWidget {
@@ -16,27 +20,31 @@ class _AuthLoginFormState extends State<AuthLoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    // 使用Provider.of来拿取数据, 指定要访问的模型类型AuthModel
-    final authModel = Provider.of<AuthModel>(context);
+    // 标题
+    final header = AppHeaderText('用户登录');
+    // 用户名
+    final usernameField = AppTextField(labelText: '用户名', onChanged: (value) => name = value);
 
-    final loginButton = ElevatedButton(
-        onPressed: () {
-          print('未登录：${authModel.isLogined}');
-          authModel.login();
-          print('已登录：${authModel.isLogined}');
-        },
-        child: Text('登录'));
+    // 密码
+    final passwordField = AppPasswordField(labelText: '密码', onChanged: (value) => password = value,);
 
-    final logoutButton = ElevatedButton(
-        onPressed: () {
-          print('已登录：${authModel.isLogined}');
-          authModel.logout();
-          print('未登录：${authModel.isLogined}');
-        },
-        child: Text('退出登录'));
+    // 确认按钮
+    final submitButton = AppButton(onPressed: () => {}, text: '确定登录',);
 
     return Container(
-      child: authModel.isLogined ? logoutButton : loginButton,
+      padding: EdgeInsets.all(16),
+      child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              header,
+              usernameField,
+              passwordField,
+              submitButton,
+            ],
+          )),
     );
   }
 }
