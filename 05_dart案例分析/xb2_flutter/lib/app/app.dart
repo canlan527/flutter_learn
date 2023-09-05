@@ -21,13 +21,14 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
 
   final AppModel appModal = AppModel();
+  final AuthModel authModel = AuthModel();
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AuthModel()),
-        ChangeNotifierProvider(create: (context) => appModal),
+        ChangeNotifierProvider.value(value: authModel),
+        ChangeNotifierProvider.value(value: appModal),
         ChangeNotifierProvider(create: (context) => PostShowModel()),
       ],
       child: MaterialApp.router(
