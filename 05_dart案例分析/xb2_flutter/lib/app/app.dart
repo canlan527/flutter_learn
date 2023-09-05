@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xb2_flutter/app/app_model.dart';
-import 'package:xb2_flutter/app/components/app_home.dart';
-import 'package:xb2_flutter/app/playground/layout/playground_layout.dart';
-import 'package:xb2_flutter/app/playground/routing/components/about.dart';
 import 'package:xb2_flutter/app/post/post_provider.dart';
-import 'package:xb2_flutter/app/post/show/post_show.dart';
-import 'package:xb2_flutter/app/post/show/post_show_model.dart';
 import 'package:xb2_flutter/app/router/app_route_information_parser.dart';
 import 'package:xb2_flutter/app/router/app_router_delegate.dart';
 import 'package:xb2_flutter/app/theme/app_theme.dart';
