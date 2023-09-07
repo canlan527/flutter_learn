@@ -10,20 +10,30 @@ class PostActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    onTapLikeAction() {
+      print('onTapLikeAction');
+    }
+
     final likeAction = Row(
       children: [
-        Icon(post.liked == 0 ? Icons.favorite_border_outlined : Icons.favorite),
-        if(post.totalLikes != 0) 
+        GestureDetector(
+          child: Icon(post.liked == 0
+              ? Icons.favorite_border_outlined
+              : Icons.favorite),
+          onTap: onTapLikeAction,
+        ),
+        if (post.totalLikes != 0)
           Container(
             padding: EdgeInsets.only(left: 4),
             child: Text('${post.totalLikes}'),
           )
-      ], 
+      ],
     );
     final commentAction = Row(
       children: [
         Icon(Icons.mode_comment_outlined),
-        if(post.totalComments != 0)
+        if (post.totalComments != 0)
           Container(
             padding: EdgeInsets.only(left: 4),
             child: Text('${post.totalComments}'),
@@ -35,7 +45,9 @@ class PostActions extends StatelessWidget {
       child: Row(
         children: [
           likeAction,
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           commentAction,
         ],
       ),
