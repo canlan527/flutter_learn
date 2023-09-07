@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xb2_flutter/app/app_model.dart';
 import 'package:xb2_flutter/app/app_provider.dart';
+import 'package:xb2_flutter/like/like_provider.dart';
 import 'package:xb2_flutter/post/post_provider.dart';
 import 'package:xb2_flutter/app/router/app_route_information_parser.dart';
 import 'package:xb2_flutter/app/router/app_router_delegate.dart';
@@ -68,6 +69,7 @@ class _AppState extends State<App> {
         ChangeNotifierProvider.value(value: appModal),
         ...appProviders,
         ...postProviders,
+        ...likeProviders,
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
