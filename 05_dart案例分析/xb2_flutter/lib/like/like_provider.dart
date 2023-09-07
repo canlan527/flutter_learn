@@ -13,4 +13,7 @@ final likeDestoryProvider = ChangeNotifierProxyProvider<AppService, LikeDestoryM
   update: (context, appService, likeDestoryModal) => LikeDestoryModal(appService: appService),
 );
 
-const likeProviders = [];
+final likeProviders = [
+  likeCreateProvider,
+  likeDestoryProvider,
+];
