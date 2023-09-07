@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:xb2_flutter/app/user/user.dart';
+import 'package:xb2_flutter/user/user.dart';
 
-import '../../app_config.dart';
+import '../../app/app_config.dart';
 
 class PlaygroundHttp extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/post/index/components/post_latest.dart';
-import 'package:xb2_flutter/app/post/index/components/post_popular.dart';
+import 'package:xb2_flutter/post/index/components/post_latest.dart';
+import 'package:xb2_flutter/post/index/components/post_popular.dart';
 
 
 class PostIndex extends StatelessWidget {

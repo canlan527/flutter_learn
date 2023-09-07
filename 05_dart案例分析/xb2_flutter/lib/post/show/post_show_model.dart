@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:xb2_flutter/app/app_config.dart';
-import 'package:xb2_flutter/app/post/post.dart';
+import 'package:xb2_flutter/post/post.dart';
 
 class PostShowModel extends ChangeNotifier {
   Post? post;

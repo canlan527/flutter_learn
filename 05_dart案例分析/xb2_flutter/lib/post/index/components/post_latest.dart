@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/post/index/components/post_list.dart';
+import 'package:xb2_flutter/post/index/components/post_list.dart';
 
 class PostLatest extends StatelessWidget {
   @override

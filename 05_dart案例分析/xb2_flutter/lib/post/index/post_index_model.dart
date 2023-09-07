@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:xb2_flutter/app/app_config.dart';
 import 'package:xb2_flutter/app/app_service.dart';
-import 'package:xb2_flutter/app/post/post.dart';
+import 'package:xb2_flutter/post/post.dart';
 
 class PostIndexModel extends ChangeNotifier {
   // 定义 posts

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/playground/layout/components/playground_layout_item.dart';
+import 'package:xb2_flutter/playground/layout/components/playground_layout_item.dart';
 
 class PlaygroundLayout extends StatelessWidget {
   @override

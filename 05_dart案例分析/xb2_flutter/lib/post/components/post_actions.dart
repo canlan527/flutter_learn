@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/post/post.dart';
+import 'package:xb2_flutter/post/post.dart';
 
 class PostActions extends StatelessWidget {
   final Post post;

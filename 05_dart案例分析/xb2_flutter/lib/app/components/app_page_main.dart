@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/playground/playground.dart';
-import 'package:xb2_flutter/app/post/create/add_post.dart';
-import 'package:xb2_flutter/app/post/index/index_post.dart';
-import 'package:xb2_flutter/app/user/profile/user_profile.dart';
+import 'package:xb2_flutter/playground/playground.dart';
+import 'package:xb2_flutter/post/create/add_post.dart';
+import 'package:xb2_flutter/post/index/index_post.dart';
+import 'package:xb2_flutter/user/profile/user_profile.dart';
 
 class AppPageMain extends StatelessWidget {
   final int index;

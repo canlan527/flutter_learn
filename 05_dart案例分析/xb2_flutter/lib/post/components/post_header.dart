@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xb2_flutter/app/post/components/post_actions.dart';
-import 'package:xb2_flutter/app/post/post.dart';
-import 'package:xb2_flutter/app/user/components/user_avatar.dart';
+import 'package:xb2_flutter/post/components/post_actions.dart';
+import 'package:xb2_flutter/post/post.dart';
+import 'package:xb2_flutter/user/components/user_avatar.dart';
 
 class PostHeader extends StatelessWidget {
   final Post post;
