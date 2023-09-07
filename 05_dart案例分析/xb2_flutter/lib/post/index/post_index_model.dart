@@ -25,9 +25,9 @@ class PostIndexModel extends ChangeNotifier {
   }
 
   // 定义获取posts方法
-  Future<List<Post>> getPosts() async {
+  Future<List<Post>> getPosts({required String sort}) async {
     // 定义请求url
-    final uri = Uri.parse('${AppConfig.apiBaseUrl}/posts');
+    final uri = Uri.parse('${AppConfig.apiBaseUrl}/posts?$sort');
     // 发送请求
     final response = await appService.apiHttpClient.get(uri);
     // 赋值

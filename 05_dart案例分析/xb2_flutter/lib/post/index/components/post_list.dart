@@ -4,6 +4,10 @@ import 'package:xb2_flutter/post/index/components/post_list_item.dart';
 import 'package:xb2_flutter/post/index/post_index_model.dart';
 
 class PostList extends StatefulWidget {
+  final String? sort;
+
+  PostList({this.sort});
+
   @override
   State<PostList> createState() => _PostListState();
 }
@@ -14,7 +18,7 @@ class _PostListState extends State<PostList> {
   void initState() {
     super.initState();
     Future.microtask(
-      () => context.read<PostIndexModel>().getPosts()
+      () => context.read<PostIndexModel>().getPosts(sort: widget.sort ?? 'latest')
     );
   }
 
