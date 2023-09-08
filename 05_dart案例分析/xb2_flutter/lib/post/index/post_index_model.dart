@@ -16,11 +16,12 @@ class PostIndexModel extends ChangeNotifier {
   // 定义 posts
   List<Post>? posts;
   final AppService appService;
-  PostListLayout? layout = PostListLayout.stack;
+  PostListLayout? layout;
 
   PostIndexModel({
     required this.appService,
     this.posts,
+    this.layout = PostListLayout.stack,
   });
 
   // 设置layout
