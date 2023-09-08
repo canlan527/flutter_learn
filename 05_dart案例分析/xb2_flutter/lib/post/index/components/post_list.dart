@@ -33,12 +33,31 @@ class _PostListState extends State<PostList> {
       child: Container(child: Text('暂无内容')),
     );
     // 构建列表视图
-    final listContent = ListView.builder(
+    final stacklist = ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) {
         return PostListItem(item: posts[index]);
       }
     );
-    return posts.length == 0 ? noContent : listContent;
+
+    final gridlist = GridView.builder(
+      itemCount: posts.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,  
+      ), 
+      itemBuilder: (context, index) {
+        return PostListItem(item: posts[index], layout: PostListLayout.grid,);
+      }
+    );
+
+    Widget postList = stacklist;
+
+    if(model.layout == PostListLayout.grid) {
+      postList = gridlist;
+    }
+
+    return posts.length == 0 ? noContent : postList;
   }
 }

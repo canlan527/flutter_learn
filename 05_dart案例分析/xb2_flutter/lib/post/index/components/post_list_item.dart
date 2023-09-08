@@ -3,14 +3,17 @@ import 'package:provider/provider.dart';
 import 'package:xb2_flutter/app/app_model.dart';
 import 'package:xb2_flutter/post/components/post_header.dart';
 import 'package:xb2_flutter/post/components/post_media.dart';
+import 'package:xb2_flutter/post/index/post_index_model.dart';
 import 'package:xb2_flutter/post/post.dart';
 import 'package:xb2_flutter/post/show/post_show_model.dart';
 
 class PostListItem extends StatelessWidget {
   final Post item;
+  final PostListLayout layout;
 
   PostListItem({
     required this.item,
+    this.layout = PostListLayout.stack, // 设置layout默认值
   });
 
   @override
@@ -31,13 +34,15 @@ class PostListItem extends StatelessWidget {
     ));
 
     final postListItemMedia = Stack(
+      fit: layout == PostListLayout.grid ? StackFit.expand : StackFit.loose,
       children: [
         PostMedia(post: item),
         postListItemMediaMask,
       ],
     );
-
-    return Container(
+    
+    // layout stack 布局 
+    final stackContainer = Container(
       padding: EdgeInsets.only(bottom: 16),
       child: Column(children: [
         postListItemMedia,
@@ -45,5 +50,18 @@ class PostListItem extends StatelessWidget {
         PostHeader(post: item),
       ]),
     );
+
+    // layout grid 布局
+    final gridContainer = Container(
+      child: postListItemMedia,
+    );
+
+    Widget ItemContainer = stackContainer;
+
+    if(layout == PostListLayout.grid) {
+      ItemContainer = gridContainer;
+    }
+
+    return ItemContainer;
   }
 }
