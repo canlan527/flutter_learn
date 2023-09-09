@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:xb2_flutter/post/create/post_create_model.dart';
 
 import 'app_page_aside.dart';
 import 'app_page_bottom.dart';
@@ -17,7 +19,30 @@ class _AppHomeState extends State<AppHome> {
   bool showAppbar = true;
 
   // 点按底部导航栏事件处理
-  onTapAppBottomNavigationBarItem(int index) {
+  onTapAppBottomNavigationBarItem(int index) async {
+    // 获取postCreateModel
+    final postCreateModel = context.read<PostCreateModel>();
+
+    final retainDataAlertDialog = AlertDialog(
+      title: const Text('是否保留未发布的内容？'),
+      actions: [
+        TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text('否')),
+        TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text('是')),
+      ],
+    );
+
+    if(currentAppBottomNavigationBarItem == 1 && postCreateModel.hasData()) {
+      final retainDataResult = await showDialog(context: context, builder: (context) => retainDataAlertDialog);
+      // 用户选择是，什么也不做
+      if(retainDataResult == null) {
+        return;
+      }
+      // 用户选择否，即不保留已编辑的内容
+      if(!retainDataResult) {
+        postCreateModel.reset();
+      }
+    }
+
     setState(() {
       currentAppBottomNavigationBarItem = index;
       showAppbar = index == 0;

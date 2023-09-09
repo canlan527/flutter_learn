@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:xb2_flutter/app/app_config.dart';
 import 'package:xb2_flutter/app/app_service.dart';
@@ -15,6 +16,7 @@ class PostCreateModel extends ChangeNotifier {
   // 声明要创建post需要的变量
   String? title;
   String? content;
+  PlatformFile? selectedFile;
   bool loading = false;
 
   // 设置title
@@ -25,9 +27,15 @@ class PostCreateModel extends ChangeNotifier {
   setContent(String? data) {
     content = data;
   }
+  // 设置selectedFile
+  setSelectedFile(PlatformFile? data) {
+    selectedFile = data;
+    notifyListeners();
+  }
+
   // 设置loading
-  setLoading(bool loading) {
-    loading = loading;
+  setLoading(bool data) {
+    loading = data;
     notifyListeners();
   }
 
@@ -35,6 +43,11 @@ class PostCreateModel extends ChangeNotifier {
   reset() {
     title = null;
     content = null;
+    selectedFile = null;
+  }
+  
+  bool hasData() {
+    return title != null || content != null || selectedFile != null ? true : false;
   }
 
   // 创建post的请求方法,返回创建的post的id
@@ -55,6 +68,21 @@ class PostCreateModel extends ChangeNotifier {
       return postId;
     } else {
       throw HttpException();
+    }
+  }
+
+  // 创建文件上传的请求方法
+  Future<bool> createFile({required int postId}) async {
+    // 发送请求
+    final response = await appService.apiHttpClient.uploadImage(
+      file: selectedFile!, 
+      postId: postId
+    );
+    // 处理响应
+    if(response.statusCode == 201) {
+      return true;
+    } else {
+      throw HttpException('上传文件失败了');
     }
   }
 }
