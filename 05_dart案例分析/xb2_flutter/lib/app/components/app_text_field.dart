@@ -32,7 +32,7 @@ class AppTextField extends StatelessWidget {
         controller: controller,
         enabled: enabled,
         keyboardType: keyboardType,
-        maxLength: isMultiline ? null : 1,
+        maxLines: isMultiline ? null : 1,
         decoration: InputDecoration(
           labelText: labelText,
         ),

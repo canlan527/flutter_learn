@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xb2_flutter/playground/playground.dart';
-import 'package:xb2_flutter/post/create/add_post.dart';
+import 'package:xb2_flutter/post/create/post_create.dart';
 import 'package:xb2_flutter/post/index/index_post.dart';
 import 'package:xb2_flutter/user/profile/user_profile.dart';
 

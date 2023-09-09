@@ -1,14 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:xb2_flutter/app/app_config.dart';
 import 'package:xb2_flutter/app/app_service.dart';
+import 'package:xb2_flutter/app/exceptions/http_exception.dart';
 
-class PostCreateModal extends ChangeNotifier {
+class PostCreateModel extends ChangeNotifier {
   final AppService appService;
 
-  PostCreateModal({
+  PostCreateModel({
     required this.appService,
   });
 
@@ -18,14 +18,12 @@ class PostCreateModal extends ChangeNotifier {
   bool loading = false;
 
   // 设置title
-  setTitle(String? title) {
-    title = title;
-    notifyListeners();
+  setTitle(String? data) {
+    title = data;
   }
   // 设置content
-  setContent(String? content) {
-    content = content;
-    notifyListeners();
+  setContent(String? data) {
+    content = data;
   }
   // 设置loading
   setLoading(bool loading) {
@@ -56,7 +54,7 @@ class PostCreateModal extends ChangeNotifier {
       final postId = responseBody['insertId'];
       return postId;
     } else {
-      throw HttpException(responseBody['message']);
+      throw HttpException();
     }
   }
 }

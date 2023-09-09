@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:xb2_flutter/app/app_config.dart';
 import 'package:xb2_flutter/app/app_service.dart';
+import 'package:xb2_flutter/app/exceptions/http_exception.dart';
 
 class LikeCreateModal extends ChangeNotifier {
   // 使用appservice发送网络请求
@@ -26,7 +26,7 @@ class LikeCreateModal extends ChangeNotifier {
     if(response.statusCode == 201) {
       notifyListeners();
     } else {
-      throw HttpException(responseBody['message']);
+      throw HttpException();
     }
   }
 }
