@@ -5,6 +5,7 @@ import 'package:xb2_flutter/post/show/post_show.dart';
 import 'package:xb2_flutter/post/show/post_show_model.dart';
 import 'package:xb2_flutter/app/router/app_router_configuration.dart';
 import 'package:xb2_flutter/auth/login/auth_login.dart';
+import 'package:xb2_flutter/user/create/user_create.dart';
 
 import '../components/app_home.dart';
 import '../../playground/routing/components/about.dart';
@@ -79,7 +80,9 @@ class AppRouterDelegate extends RouterDelegate<AppRouterConfiguration>
               key: const ValueKey('PostShow'),
               child: PostShow(appModal.resourceId!, post: postShowModel.post)),
         if (appModal.pageName == 'AuthLogin')
-          MaterialPage(key: ValueKey('AuthLogin'), child: AuthLogin())
+          MaterialPage(key: ValueKey('AuthLogin'), child: AuthLogin()),
+        if (appModal.pageName == 'UserCreate')
+          MaterialPage(key: ValueKey('UserCreate'), child: UserCreate()),
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {

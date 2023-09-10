@@ -17,6 +17,26 @@ class UserProfile extends StatelessWidget {
         },
         child: Text('登录'));
 
+    // 登录按钮
+    final register = TextButton(
+        onPressed: () {
+          appModel.setPageName('UserCreate');
+        },
+        child: Text('注册'));
+    
+    // 分隔符
+    final separator = Text('/');
+
+    // 一组部件
+    final actions = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        login,
+        separator,
+        register,
+      ],
+    );
+
     // 用户部分
     final userProfile = TextButton(
         onPressed: () {
@@ -35,7 +55,7 @@ class UserProfile extends StatelessWidget {
             size: 128,
             color: Colors.black12,
           ),
-          authModel.isLogined ? userProfile : login,
+          authModel.isLogined ? userProfile : actions,
         ],
       ),
     );

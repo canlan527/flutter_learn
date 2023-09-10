@@ -12,6 +12,7 @@ import 'package:xb2_flutter/app/router/app_router_delegate.dart';
 import 'package:xb2_flutter/app/theme/app_theme.dart';
 import 'package:xb2_flutter/auth/auth.dart';
 import 'package:xb2_flutter/auth/auth_model.dart';
+import 'package:xb2_flutter/user/user_provider.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -72,6 +73,7 @@ class _AppState extends State<App> {
         ...appProviders,
         ...postProviders,
         ...likeProviders,
+        ...userProviders,
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
