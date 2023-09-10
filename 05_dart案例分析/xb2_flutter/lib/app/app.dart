@@ -53,9 +53,11 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     // 添加初始化界面
     if(initializing) {
-      return const MaterialApp(
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
+        theme: AppTheme.light,
+        darkTheme: AppTheme.dark,
+        home: const Scaffold(
           body: Center(
             child: Text('初始化...'),
           ),
