@@ -26,7 +26,7 @@ class LikeCreateModal extends ChangeNotifier {
     if(response.statusCode == 201) {
       notifyListeners();
     } else {
-      // throw HttpException(responseBody['message']);
+      throw HttpException(responseBody['message']);
     }
   }
 }

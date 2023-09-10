@@ -10,6 +10,7 @@ class AppPageHeader extends StatelessWidget implements PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       title: AppLogo(),
+      centerTitle: true,
       leading: IconButton(
         onPressed: () {
           Scaffold.of(context).openDrawer();
