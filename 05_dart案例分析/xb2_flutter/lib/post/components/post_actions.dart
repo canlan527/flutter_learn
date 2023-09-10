@@ -57,13 +57,14 @@ class PostActions extends StatelessWidget {
       }
     }
 
+    final iconFavorite_Outlined = Icon(Icons.favorite_border_outlined);
+    final iconFavorite = Icon(Icons.favorite, color: Colors.deepOrange,);
+
     final likeAction = Row(
       children: [
         GestureDetector(
-          child: Icon(post.liked == 0
-              ? Icons.favorite_border_outlined
-              : Icons.favorite),
           onTap: onTapLikeAction,
+          child: post.liked == 0 ? iconFavorite_Outlined : iconFavorite,
         ),
         if (post.totalLikes != 0)
           Container(

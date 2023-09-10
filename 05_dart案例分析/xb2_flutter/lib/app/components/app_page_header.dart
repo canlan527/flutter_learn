@@ -20,7 +20,7 @@ class AppPageHeader extends StatelessWidget implements PreferredSize {
         AppPageHeaderActionsMore(),
       ],
       bottom: const TabBar(
-        labelColor: Colors.white, 
+        // labelColor: Colors.white, 
         tabs: [
           Tab(
             text: '最近',

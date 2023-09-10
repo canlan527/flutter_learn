@@ -3,7 +3,8 @@ class AppException implements Exception {
   
   AppException([this.message = '']);
 
+  @override
   String toString() {
-    return '${this.runtimeType}: $message';    
+    return '$runtimeType: $message';    
   }
 }
